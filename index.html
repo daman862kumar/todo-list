@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="modules/calender.css">
+    <link rel="stylesheet" href="modules/select.css">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<style>
+    
+</style>
+
+<body>
+    <div class="todo">
+        <div class="todo-header">
+            <div class="topbar">
+                <div class="sidebar-toggle" onclick="openNav()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <div class="notification">
+                    <a href="#" class="notify openDrop">
+                        <!-- fa fa-bell-slash-o -->
+                        <i class="	fa fa-bell-o"></i>
+                    </a>
+                    <div class="dropdown">
+                        <a href="#" class="drop-item">drop item</a>
+                        <a href="#" class="drop-item">drop item</a>
+                        <a href="#" class="drop-item">drop item</a>
+                    </div>
+                </div>
+
+                <div class="profile">
+                    <div class="profile-img-div openDrop">
+                        <img src="https://img.pngio.com/parent-directory-avatar-2png-avatar-png-256_256.png">
+                    </div>
+                    <div class="dropdown">
+                        <a href="#" class="drop-item">drop item</a>
+                        <a href="#" class="drop-item">drop item</a>
+                        <a href="#" class="drop-item">drop item</a>
+                    </div>
+                </div>
+            </div>
+            <div class="title-bar">
+                <p class="title">your schedule</p>
+                <p class="task">today you have 5 tasks</p>
+            </div>
+            <div class="actions">
+                <a href="#" class="category">All category</a>
+
+                <a href="#" class="category" style="margin-left: auto;" onclick="openCalender(event)" id="cal"><i
+                        class="fa fa-calendar"></i></a>
+                <a href="#" class="category" onclick="openFilter(event)"><i class="fa fa-clock-o"></i></a>
+            </div>
+            <div class="calender"></div>
+            <div class="filters">
+                <div class="select-div-filter">
+                    <select class="select">
+                        <option data-status="all">All</option>
+                        <option data-status="completed">Completed</option>
+                        <option data-status="pending">Pending</option>
+                    </select>
+                </div>
+                <div class="select-div-filter">
+                    <select class="select">
+                        <option data-status="asc">A-Z</option>
+                        <option data-status="des">Z-A</option>
+                    </select>
+                </div>
+                <div class="select-div-filter">
+                    <select class="select">
+                        <option data-status="old">Oldest</option>
+                        <option data-status="new">Newest</option>
+                    </select>
+                </div>
+               
+
+               
+
+               
+
+
+            </div>
+        </div>
+        <div class="todo-body">
+            <div class="no-data">
+                <img src="images/undraw_note_list_etto.png" class="no-task">
+                <p class="no-data-msg">No Tasks Yet !!!</p>
+                <div class="add-task">
+                    <a href="#" onclick="expand2()">
+                        <i class="fa fa-plus"></i>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="todo-footer">
+
+            <div class="footer-header">
+                <a href="#" class="goback expand-more"><i class="fa fa-arrow-left"></i></a>
+                <p class="f-title">Add New Thing</p>
+                <a href="#" class="setting"><i class="fa fa-cogs"></i></a>
+
+            </div>
+            <div class="f-img">
+                <img src="draw.png">
+            </div>
+
+            <div class="input-wrapper basic">
+                <input type="text" class="todo-input" id="task-title" placeholder="Enter Task">
+                <button class="todo-submit expand-more" type="button" id="expand-more"><i
+                        class="fa fa-plus-circle"></i></button>
+                <button class="todo-submit add-todo" type="button"><i class="fa fa-send"></i></button>
+
+            </div>
+            <div class="input-wrapper">
+                <textarea class="todo-input" id="task-des" placeholder="Enter Description"
+                    data-gramm="false"></textarea>
+
+
+            </div>
+            <div class="row">
+                <div class="input-wrapper">
+                    <input type="text" id="date" class="todo-input" placeholder="Enter Date"
+                        onfocus="openCalender(event)">
+                    <button class="todo-submit " type="button"><i class="fa fa-calendar"></i></button>
+
+                </div>
+                <div class="input-wrapper">
+                    <input type="text" id="time" class="todo-input" placeholder="Enter Time">
+                    <button class="todo-submit " type="button"><i class="fa fa-clock-o"></i></button>
+
+                </div>
+            </div>
+
+
+
+            <button class="todo-submit-btn add-todo expand-more" type="button" id="submit">Submit <i
+                    class="fa fa-send-o"></i></button>
+
+
+        </div>
+        <div id="mySidenav" class="sidenav">
+            <nav role="navigation" class="menu">
+                <div class="side-header">
+                    <a href="#" class="logotype">LOGO<span>TYPE</span></a>
+                    <span class="close" onclick="closeNav()">&times;</span>
+                </div>
+
+
+
+                <div class="overflow-container">
+
+                    <ul class="menu-dropdown">
+
+                       
+
+                        <li><a href="#">Notification</a><span class="icon"><i class="fa fa-envelope"></i></span></li>
+                        <li class="menu-hasdropdown">
+                            <a href="#">Settings</a><span class="icon"><i class="fa fa-gear"></i></span>
+
+                            <label title="toggle menu" for="settings">
+                                <span class="downarrow"><i class="fa fa-caret-down"></i></span>
+                            </label>
+                            <input type="checkbox" class="sub-menu-checkbox" id="settings" />
+
+                            <ul class="sub-menu-dropdown">
+                                <li><a href="">Profile</a></li>
+                                <li><a href="">Security</a></li>
+                                <li><a href="">Account</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                </div>
+
+            </nav>
+        </div>
+        <div class="view-modal">
+            <div class="view-modal-topbar">
+                <a href="#" class="goback" onclick="closeView()"><i class="fa fa-arrow-left"></i></a>
+                <p class="f-title">Add New Thing</p>
+                <a href="#" class="setting"><i class="fa fa-cogs"></i></a>
+            </div>
+            <div class="view-modal-body">
+
+
+            </div>
+            <div class="view-modal-footer">
+                <button class="todo-close-btn" type="button">Close</button>
+            </div>
+
+        </div>
+    </div>
+</body>
+<script src="modules/calender.js"></script>
+<script src="modules/select.js"></script>
+<script src="script.js"></script>
+<script>
+    var closeBtn = document.getElementsByClassName("todo-close-btn")[0];
+    closeBtn.addEventListener("click", closeView)
+    function closeView() {
+        document.getElementsByClassName("view-modal")[0].style.transform = "scale(0)"
+        document.getElementsByClassName("view-modal")[0].style.opacity = "0"
+    }
+    document.getElementsByClassName("select").select()
+
+    var drop=[...document.getElementsByClassName("openDrop")]
+    drop.forEach(v=>{
+        v.addEventListener("click",function(){
+            if(this.nextElementSibling.classList.contains("dropdown")){
+                if(document.getElementsByClassName("open")[0]!==undefined && !this.nextElementSibling.classList.contains("open")){
+                    document.getElementsByClassName("open")[0].classList.remove("open")
+                }
+              
+                this.nextElementSibling.classList.toggle("open")
+            }
+        })
+    })
+</script>
+</html>

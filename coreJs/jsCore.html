@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .alert-parent {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: none;
+            width: 100%;
+            height: 100%;
+            background: #7171717d;
+            z-index: 9999;
+            user-select: none;
+        }
+
+        .alert-parent .alertUi {
+            position: relative;
+            top: 0;
+            left: 50%;
+            transform: translate(-50%, 0%);
+            min-width: 400px;
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            padding: 15px;
+            border-radius: 5px;
+            min-height: 150px;
+
+            background: white;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .alert-parent .alertUi p {
+            margin-top: 0;
+            font-size: 17px;
+            font-family: monospace;
+        }
+
+        button.alert-btn {
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            border: none;
+            background: #9C27B0;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button.ok-btn {
+    position: absolute;
+    right: 110px;
+    border: none;
+    background: rgb(255, 87, 34);
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: rgb(255, 255, 255);
+    border: 1px solid rgb(255, 87, 34);
+    bottom: 15px;
+}
+
+        button.cancel-btn {
+            position: absolute;
+            right: 15px;
+            border: none;
+            background: rgb(255, 255, 255);
+            padding: 10px 20px;
+            border-radius: 5px;
+            color: rgb(255, 87, 34);
+            border: 1px solid rgb(255, 87, 34);
+            bottom: 15px;
+        }
+
+        @media screen and (max-width:600px) {
+            .alert-parent .alertUi {
+                position: relative;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                min-width: 90%;
+                width: 100%;
+                max-width: 90%;
+                height: auto;
+                padding: 15px;
+                border-radius: 5px;
+                min-height: 150px;
+                background: white;
+                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+</body>
+<script>
+    Object.prototype.alertUI = function (message) {
+        var divParent = document.createElement("div");
+        divParent.className = "alert-parent";
+        document.body.onload = function () {
+            divParent.style.display = "block"
+        }
+        var alertUi = document.createElement("div");
+        alertUi.className = "alertUi";
+        alertUi.innerHTML = `<p>${location.host} Says</p> <p>${message}</p>`
+        divParent.append(alertUi)
+        var btn = document.createElement("button");
+        btn.className = "alert-btn";
+        btn.innerText = "OK"
+        btn.onclick = function () {
+            this.parentElement.parentElement.remove()
+        }
+        alertUi.append(btn)
+        document.body.insertBefore(divParent, document.body.children[0])
+    }
+
+
+    Object.prototype.confirmUI = function (message) {
+        var status
+        var divParent = document.createElement("div");
+        divParent.className = "alert-parent";
+        document.body.onload = function () {
+            divParent.style.display = "block"
+        }
+        var alertUi = document.createElement("div");
+        alertUi.className = "alertUi";
+        alertUi.innerHTML = `<p>${location.host} Says</p> <p>${message}</p>`
+        divParent.append(alertUi)
+        var btn = document.createElement("button");
+        btn.className = "ok-btn";
+        btn.innerText = "Ok"
+        var btn1 = document.createElement("button");
+        btn1.className = "cancel-btn";
+        btn1.innerText = "Cancel"
+        alertUi.append(btn)
+        alertUi.append(btn1)
+        document.body.insertBefore(divParent, document.body.children[0])
+        btn.onclick = function () {
+            this.parentElement.parentElement.remove()
+            return true
+        }
+
+        
+        btn1.onclick = function () {
+            this.parentElement.parentElement.remove()
+            return false
+        }
+       
+       
+    }
+    console.log(alert("Hello"))
+</script>
+
+</html>
